@@ -1,0 +1,19 @@
+name: Auto‑Green
+
+on:
+  schedule:
+    - cron: '0 12 * * *'  # runs daily at noon UTC
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: bcanseco/github-contribution-graph-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_EMAIL: it23208230@my.sliit.lk
+          GIT_BRANCH: main
