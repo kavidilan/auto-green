@@ -1,8 +1,8 @@
-name: Auto‑Green
+name: Auto-Green
 
 on:
   schedule:
-    - cron: '0 12 * * *'  # runs daily at noon UTC
+    - cron: '0 12 * * *'
   workflow_dispatch:
 
 jobs:
@@ -12,8 +12,13 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
+
       - uses: bcanseco/github-contribution-graph-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_EMAIL: it23208230@my.sliit.lk
           GIT_BRANCH: main
+
+          # 👇 ADD THESE
+          MAX_COMMITS: 2
+          MIN_COMMITS: 1
